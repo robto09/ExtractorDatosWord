@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Bienvenido, herramienta para extraer datos de formulario de tus archivos word.</h2>
+  <h3>Ingrese la ubicación del archivo</h3>
+
+  <form action="/" method="POST" enctype="multipart/form-data" class="form-inline">
+    <input style="margin-top: 15px;" type="file" class="form-control-file" id="file" name="file" aria-describedby="fileHelp">
+    <br>
+    <button id="BtnProcess" class="BtnProcess" type="submit">Procesar</button>
+    <button id="export" class="BtnProcess">Exportar</button>
+  </form>
+
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+  <p>{{ MESSAGE }}</p>
+  <br>
+
+  <table>
+  <tr>
+    <th>Campo</th>
+    <th>Datos</th>
+  </tr>
+  <tr>
+    <td>Id </td>
+    <td>{{ NO }}</td>
+  </tr>
+  <tr>
+    <td>Nombre</td>
+    <td>{{ NAME }}</td>
+  </tr>
+  <tr>
+    <td>Nombre Del Curso</td>
+    <td>{{ NOMBRE }}</td>
+  </tr>
+  <tr>
+    <td>Costo</td>
+    <td>{{ COSTO }}</td>
+  </tr>
+  <tr>
+    <td>Compromiso</td>
+    <td>{{ DEBE }}</td>
+  </tr>
+  <tr>
+    <td>Fecha Del Curso</td>
+    <td>{{ FETCHA }}</td>
+  </tr>
+  <tr>
+    <td>Institución Que Imparte Curso</td>
+    <td>{{ INSTITUCION }}</td>
+  </tr>
+  <tr>
+    <td>Lugar</td>
+    <td>{{ LUGAR }}</td>
+  </tr>
+  <tr>
+    <td>Subsidio</td>
+    <td>{{ SUBSIDIO }}</td>
+  </tr>
+</table>
+
+</div>
+
+<style>
+  #FileLocation {
+    border: 1px solid black;
+    outline: none;
+  }
+  .BtnProcess {
+    border: 1px solid black;
+    outline: none;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+</body>
+
+
+<script type="text/javascript">
+  $("#export").on("click", function(event) {
+    event.preventDefault();
+
+    window.location.href = "http://docxparser.pythonanywhere.com/export";
+
+  });
+</script>
+</html>
